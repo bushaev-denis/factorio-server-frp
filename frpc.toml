@@ -1,0 +1,8 @@
+serverAddr = "Put your ec2 server instance IP here"
+serverPort = 7000
+
+[[proxies]]
+name = "factorio"
+type = "udp"
+localPort = 34197
+remotePort = 34197

@@ -1,0 +1,26 @@
+version: "2"
+services:
+  # reference: https://github.com/factoriotools/factorio-docker/blob/master/docker/docker-compose.yml
+  factorio:
+    container_name: factorio
+    image: factoriotools/factorio:stable
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "34197:34197/udp"
+    volumes:
+      - ./data/factorio:/factorio
+    environment:
+      - UID=1000
+      - GID=1000
+      - TZ=$TZ
+      - VERSION=1.1.110
+      - SHA256=8e13353ab23d57989db7b06594411d30885de1a923f3a989d12749c1abc01583
+  frpc:
+    container_name: frpc
+    image: snowdreamtech/frpc
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./frpc.toml:/etc/frp/frpc.toml
